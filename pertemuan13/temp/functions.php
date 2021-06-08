@@ -2,7 +2,7 @@
 
 function koneksi()
 {
-  return mysqli_connect('localhost', 'root', 'root', 'pw_043040023');
+  return mysqli_connect('localhost', 'root', '', 'pw_d121191078');
 }
 
 function query($query)
@@ -156,7 +156,7 @@ function cari($keyword)
   $conn = koneksi();
 
   $query = "SELECT * FROM mahasiswa
-              WHERE 
+              WHERE
             nama LIKE '%$keyword%' OR
             nrp LIKE '%$keyword%'
           ";
@@ -178,7 +178,7 @@ function login($data)
   $username = htmlspecialchars($data['username']);
   $password = htmlspecialchars($data['password']);
 
-  // cek dulu username 
+  // cek dulu username
   if ($user = query("SELECT * FROM user WHERE username = '$username'")) {
     // cek password
     if (password_verify($password, $user['password'])) {
@@ -213,7 +213,7 @@ function registrasi($data)
     return false;
   }
 
-  // jika username sudah ada 
+  // jika username sudah ada
   if (query("SELECT * FROM user WHERE username = '$username'")) {
     echo "<script>
             alert('username sudah terdaftar!');
